@@ -1,0 +1,4 @@
+(executable
+ (public_name exercises_OCaml)
+ (name beginner)
+ (libraries exercises_OCaml))
