@@ -32,4 +32,14 @@ let rec nth_el list n =
         | [] -> None
         | h :: rest -> if n = 0 then Some h else nth_el rest (n-1)
 
+(* 4 - Find the number of elements of a list. *)
+let rec length = function 
+        | [] -> 0
+        | _ :: rest -> 1 + (length rest)
+
+
+
+(* 4 - Find the number of elements of a list with tail recursion (Recommended way) *)
+let length_opt list = List.fold_left (fun acc _ -> acc + 1) 0 list
+
 
