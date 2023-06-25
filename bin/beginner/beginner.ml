@@ -68,3 +68,26 @@ let rev_list list = List.fold_left (fun accum v -> v :: accum) [] list
 let rec rev_list_pattern = function 
 | [] as l -> l
 | h :: rest -> rev_list_pattern rest @ [h]
+
+
+(* 6 - Find out whether a list is a palindrome. *)
+let is_palindrome list = List.equal (fun a b -> a = b) (List.rev list) list
+
+(* 6 - Find out whether a list is a palindrome with implemented reverse list *)
+let is_palindrome_fold_rev list = 
+        let rev l = List.fold_left (fun accum v -> v :: accum) [] l 
+        in 
+        List.equal (fun a b -> a = b) (rev list) list;;
+
+(* 6 - Find out whether a list is a palindrome with implemented reverse and equal list (without map2) ... it's a bad idea*)
+let is_palindrome_hard_way list = 
+        let rev l = List.fold_left (fun accum v -> v :: accum) [] l 
+        in
+        let rec equal_list = function
+                | ([], []) -> true
+                | (h1 :: r1, h2 :: r2) when h1 = h2 -> equal_list (r1, r2)
+                | (_::_, []) | ([], _::_) | (_::_, _::_) -> false
+
+        in
+        equal_list ((rev list), list);;
+
