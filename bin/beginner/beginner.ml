@@ -32,6 +32,15 @@ let rec nth_el list n =
         | [] -> None
         | h :: rest -> if n = 0 then Some h else nth_el rest (n-1)
 
+(* 3 - Find the N'th element of a list using when *)
+let rec nth_el_when list n = 
+        match list with
+        | [] -> None
+        | h :: _ when n = 0 -> Some h 
+        | _ :: rest -> nth_el_when rest(n-1)
+
+
+
 (* 4 - Find the number of elements of a list. *)
 let rec length = function 
         | [] -> 0
@@ -42,4 +51,12 @@ let rec length = function
 (* 4 - Find the number of elements of a list with tail recursion (Recommended way) *)
 let length_opt list = List.fold_left (fun acc _ -> acc + 1) 0 list
 
+
+(* 4 - Find the number of elements of a list with tail recursion without fold *)
+let rec lenght_tail_call list accum = 
+        match list with 
+        | [] -> accum
+        | _ :: rest -> lenght_tail_call rest (accum+1)
+
+let () =  Printf.printf "%d\n" (lenght_tail_call [1;2;3;4;5;6;7] 0)
 
