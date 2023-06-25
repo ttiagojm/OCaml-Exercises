@@ -60,3 +60,11 @@ let rec lenght_tail_call list accum =
 
 let () =  Printf.printf "%d\n" (lenght_tail_call [1;2;3;4;5;6;7] 0)
 
+(* 5 - Reverse a list *)
+let rev_list list = List.fold_left (fun accum v -> v :: accum) [] list
+
+
+(* 5 - Reverse a list using append operator (probably not a good way) *)
+let rec rev_list_pattern = function 
+| [] as l -> l
+| h :: rest -> rev_list_pattern rest @ [h]
